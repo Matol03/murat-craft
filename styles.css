@@ -467,41 +467,36 @@ body { background: var(--paper); }
 /* Marquee, contact and custom card used to rely on the (now light) ink color */
 .marquee { background: var(--surface); color: var(--ink); }
 
-/* Contact section: white text over a spinning planet */
+/* Contact section: white text over a realistic spinning Earth */
 .contact {
   position: relative;
   overflow: hidden;
   color: #fff;
-  background: radial-gradient(circle at 50% 120%, #2a1d5e 0%, #0d0a1a 70%);
+  background: radial-gradient(circle at 50% 28%, #0a1430 0%, #05060f 70%);
 }
 .contact h2,
 .contact .eyebrow--light { color: #fff; }
 .contact__sub { color: rgba(255, 255, 255, 0.9); }
 .contact__alt { color: rgba(255, 255, 255, 0.8); }
 .contact__inner { position: relative; z-index: 1; }
-.contact .planet {
+.contact .earth {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 86vmin;
-  height: 86vmin;
+  width: 88vmin;
+  height: 88vmin;
+  max-width: 760px;
+  max-height: 760px;
   transform: translate(-50%, -50%);
-  border-radius: 50%;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.55;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 30px, rgba(201, 184, 255, 0.6) 30px 32px),
-    repeating-linear-gradient(0deg, transparent 0 30px, rgba(201, 184, 255, 0.32) 30px 32px),
-    radial-gradient(circle at 34% 30%, #7c4dff 0%, #3a1d80 46%, #16093a 82%);
-  background-size: 64px 100%, 100% 64px, 100% 100%;
-  box-shadow:
-    inset -40px -26px 80px rgba(0, 0, 0, 0.7),
-    inset 28px 20px 70px rgba(139, 92, 255, 0.35),
-    0 0 130px rgba(124, 77, 255, 0.45);
-  -webkit-mask: radial-gradient(circle, #000 60%, transparent 73%);
-  mask: radial-gradient(circle, #000 60%, transparent 73%);
-  animation: globe-spin 16s linear infinite;
+  opacity: 0.92;
+}
+/* the two side-by-side land/cloud strips scroll to fake rotation */
+.contact .earth__spin { animation: earth-rotate 64s linear infinite; }
+.contact .earth__clouds { animation: earth-rotate 48s linear infinite; }
+@keyframes earth-rotate {
+  to { transform: translateX(-720px); }
 }
 
 .tmpl--dark { background: linear-gradient(135deg, var(--violet), #2a1d5e); }
@@ -553,6 +548,6 @@ body { background: var(--paper); }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee__track { animation: none; }
-  .globe, .contact .planet { animation: none; }
+  .globe, .contact .earth__spin, .contact .earth__clouds { animation: none; }
   .btn:hover, .work-card:hover, .tmpl:hover { transform: none; }
 }
