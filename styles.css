@@ -467,37 +467,17 @@ body { background: var(--paper); }
 /* Marquee, contact and custom card used to rely on the (now light) ink color */
 .marquee { background: var(--surface); color: var(--ink); }
 
-/* Contact section: white text over a realistic spinning Earth */
+/* Contact section: white text, lets the page-wide globe show through */
 .contact {
   position: relative;
-  overflow: hidden;
   color: #fff;
-  background: radial-gradient(circle at 50% 28%, #0a1430 0%, #05060f 70%);
+  background: rgba(8, 9, 24, 0.45);
 }
 .contact h2,
 .contact .eyebrow--light { color: #fff; }
 .contact__sub { color: rgba(255, 255, 255, 0.9); }
 .contact__alt { color: rgba(255, 255, 255, 0.8); }
 .contact__inner { position: relative; z-index: 1; }
-.contact .earth {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 88vmin;
-  height: 88vmin;
-  max-width: 760px;
-  max-height: 760px;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.92;
-}
-/* the two side-by-side land/cloud strips scroll to fake rotation */
-.contact .earth__spin { animation: earth-rotate 64s linear infinite; }
-.contact .earth__clouds { animation: earth-rotate 48s linear infinite; }
-@keyframes earth-rotate {
-  to { transform: translateX(-720px); }
-}
 
 .tmpl--dark { background: linear-gradient(135deg, var(--violet), #2a1d5e); }
 .tmpl--dark p { color: rgba(255, 255, 255, 0.78); }
@@ -514,40 +494,20 @@ body { background: var(--paper); }
   box-shadow: 0 0 0 4px rgba(139, 92, 255, 0.3);
 }
 
-/* ===== Spinning globe background ===== */
-.globe {
+/* ===== Page-wide animated globe background (canvas) ===== */
+#bg-globe {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 72vmin;
-  height: 72vmin;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.42;
-  /* longitude lines (vertical) + latitude lines (horizontal) over a shaded sphere */
-  background:
-    repeating-linear-gradient(90deg, transparent 0 26px, rgba(201, 184, 255, 0.55) 26px 28px),
-    repeating-linear-gradient(0deg, transparent 0 26px, rgba(201, 184, 255, 0.30) 26px 28px),
-    radial-gradient(circle at 34% 30%, #7c4dff 0%, #3a1d80 46%, #16093a 82%);
-  background-size: 56px 100%, 100% 56px, 100% 100%;
-  box-shadow:
-    inset -34px -22px 70px rgba(0, 0, 0, 0.65),
-    inset 24px 18px 60px rgba(139, 92, 255, 0.35),
-    0 0 110px rgba(124, 77, 255, 0.4);
-  /* fade the edges so it reads as a sphere */
-  -webkit-mask: radial-gradient(circle, #000 60%, transparent 73%);
-  mask: radial-gradient(circle, #000 60%, transparent 73%);
-  animation: globe-spin 14s linear infinite;
 }
-/* scroll the vertical longitude band to fake rotation */
-@keyframes globe-spin {
-  to { background-position: 112px 0, 0 0, 0 0; }
-}
+
+/* Let the single globe show through the large tinted sections */
+.section--tint { background: rgba(21, 16, 43, 0.55); }
 
 @media (prefers-reduced-motion: reduce) {
   .marquee__track { animation: none; }
-  .globe, .contact .earth__spin, .contact .earth__clouds { animation: none; }
   .btn:hover, .work-card:hover, .tmpl:hover { transform: none; }
 }

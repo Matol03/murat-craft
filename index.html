@@ -18,8 +18,8 @@
 </head>
 <body>
 
-  <!-- ===== ВРАЩАЮЩИЙСЯ ГЛОБУС (фон) ===== -->
-  <div class="globe" aria-hidden="true"></div>
+  <!-- ===== ВРАЩАЮЩИЙСЯ ГЛОБУС С СВЯЗЯМИ ГОРОДОВ (фон всей страницы) ===== -->
+  <canvas id="bg-globe" aria-hidden="true"></canvas>
 
   <!-- ===== НАВИГАЦИЯ ===== -->
   <header class="nav">
@@ -265,71 +265,6 @@
 
   <!-- ===== КОНТАКТЫ ===== -->
   <section id="contact" class="contact">
-    <!-- Realistic spinning Earth (pure SVG, no images) -->
-    <svg class="earth" viewBox="0 0 400 400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <clipPath id="earthClip"><circle cx="200" cy="200" r="180" /></clipPath>
-        <radialGradient id="ocean" cx="35%" cy="30%" r="75%">
-          <stop offset="0%" stop-color="#3b86e0" />
-          <stop offset="45%" stop-color="#1d54a3" />
-          <stop offset="80%" stop-color="#0e2f63" />
-          <stop offset="100%" stop-color="#081d3f" />
-        </radialGradient>
-        <linearGradient id="land" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#4d9a45" />
-          <stop offset="55%" stop-color="#3a7d34" />
-          <stop offset="100%" stop-color="#2c6128" />
-        </linearGradient>
-        <radialGradient id="atmos" cx="50%" cy="50%" r="50%">
-          <stop offset="70%" stop-color="rgba(120,170,255,0)" />
-          <stop offset="90%" stop-color="rgba(120,170,255,0.35)" />
-          <stop offset="100%" stop-color="rgba(120,170,255,0)" />
-        </radialGradient>
-        <radialGradient id="shade" cx="35%" cy="30%" r="78%">
-          <stop offset="0%" stop-color="rgba(255,255,255,0.30)" />
-          <stop offset="32%" stop-color="rgba(255,255,255,0)" />
-          <stop offset="100%" stop-color="rgba(0,0,0,0.72)" />
-        </radialGradient>
-        <filter id="cloudBlur"><feGaussianBlur stdDeviation="6" /></filter>
-
-        <!-- One hemisphere of land, drawn in a 720×360 equirectangular strip -->
-        <g id="landmass">
-          <polygon fill="url(#land)" points="24,50 60,40 110,40 170,36 200,54 196,76 220,86 204,100 210,116 196,130 166,136 150,120 124,116 110,100 100,80 60,64 30,60" />
-          <polygon fill="url(#land)" points="176,148 196,130 200,150 204,164 194,162 180,154" />
-          <polygon fill="url(#land)" points="204,164 220,156 240,170 260,180 270,190 280,204 274,226 264,240 244,256 230,270 216,280 218,260 216,240 220,220 210,204 200,190 200,176" />
-          <polygon fill="url(#land)" points="330,150 360,144 390,116 424,118 446,156 462,156 440,184 440,210 430,230 416,246 400,250 390,240 384,216 378,190 376,172 350,170 336,164 326,152" />
-          <polygon fill="url(#land)" points="342,104 356,94 366,80 380,72 400,70 420,60 416,44 390,56 376,64 364,78 350,92" />
-          <polygon fill="url(#land)" points="420,60 460,44 500,36 560,30 640,36 680,44 700,48 660,60 640,70 630,90 604,100 600,120 576,136 570,160 560,164 556,148 540,136 520,164 504,140 490,130 476,130 464,144 450,120 430,106 450,96 470,84 480,70 440,70 430,80" />
-          <polygon fill="url(#land)" points="586,224 620,204 644,204 660,230 660,254 640,256 616,244 590,248" />
-          <polygon fill="#dfe9f2" points="270,36 300,40 320,30 296,20 276,24" />
-          <polygon fill="#e8f1f8" points="0,360 720,360 720,338 600,330 450,336 300,330 150,336 0,342" />
-          <rect fill="#e8f1f8" x="0" y="0" width="720" height="16" />
-        </g>
-
-        <g id="clouds" fill="#ffffff" filter="url(#cloudBlur)">
-          <ellipse cx="120" cy="120" rx="55" ry="18" />
-          <ellipse cx="300" cy="90" rx="70" ry="16" />
-          <ellipse cx="480" cy="160" rx="60" ry="20" />
-          <ellipse cx="620" cy="110" rx="48" ry="16" />
-          <ellipse cx="250" cy="232" rx="62" ry="18" />
-          <ellipse cx="552" cy="250" rx="54" ry="16" />
-        </g>
-      </defs>
-
-      <circle cx="200" cy="200" r="192" fill="url(#atmos)" />
-      <g clip-path="url(#earthClip)">
-        <circle cx="200" cy="200" r="180" fill="url(#ocean)" />
-        <g class="earth__spin">
-          <use href="#landmass" x="20" y="20" />
-          <use href="#landmass" x="740" y="20" />
-        </g>
-        <g class="earth__clouds" opacity="0.28">
-          <use href="#clouds" x="20" y="20" />
-          <use href="#clouds" x="740" y="20" />
-        </g>
-        <circle cx="200" cy="200" r="180" fill="url(#shade)" />
-      </g>
-    </svg>
     <div class="contact__inner">
       <div class="contact__avatar">
         <img src="assets/contact.jpg" alt="Murat" onerror="this.classList.add('placeholder')" />
@@ -361,6 +296,7 @@
     </div>
   </footer>
 
+  <script src="globe.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
