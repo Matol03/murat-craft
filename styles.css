@@ -479,8 +479,10 @@ body { background: var(--paper); }
 .contact__alt { color: rgba(255, 255, 255, 0.8); }
 .contact__inner { position: relative; z-index: 1; }
 
-.tmpl--dark { background: linear-gradient(135deg, var(--violet), #2a1d5e); }
-.tmpl--dark p { color: rgba(255, 255, 255, 0.78); }
+.tmpl--dark { background: linear-gradient(135deg, var(--violet), #2a1d5e); color: #fff; }
+.tmpl--dark h3 { color: #fff; }
+.tmpl--dark p { color: rgba(255, 255, 255, 0.85); }
+.tmpl--dark .tmpl__price { color: #fff; }
 
 /* Buttons that previously used a white/ink contrast */
 .btn--light { background: var(--violet); color: #fff; }
